@@ -1,0 +1,35 @@
+<div ng-init="init()">
+    <input class="form-control" ng-model="filterText" ng-change='filter()'
+        placeholder="Search for specific car" style="margin-bottom: 5px" />
+
+    <input class="form-control" ng-model="filterBrand" ng-change='filter()'
+    placeholder="Search for specific car" style="margin-bottom: 5px" />
+
+    <form action="/action_page.php">
+        <div class="form-group">
+          <select class="form-control" id="sel1" name="sellist1">
+            <option>Car model</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </div>
+    </form>
+        
+    <button ng-click="createcar()" type="button" class="btn btn-secondary" style="margin-bottom: 15px">Add new
+        car</button>
+    <div ng-repeat="car in cars track by $index" class="card bg-dark text-white"
+        style="width: 100%; margin-bottom: 10px">
+        <div class="card-body">
+            <h5 class="card-title">{{ car.Title }}</h5>
+            <p class="card-text">Brand: {{ car.Brand }}</p>
+			<p class="card-text">Model: {{ car.Model }}</p>
+			<p class="card-text">Drived distance: {{ car.DrivedDistance }}km</p>
+			<p class="card-text">Price: {{ car.Price }}€</p>
+            <p class="card-text">Fuel: {{ car.Fuel }}</p>
+            <a ng-click="deletecar(car.Id)" class="card-link text-danger hover">Delete</a>
+            <a ng-click="modifycar(car.Id)" class="card-link text-info hover">Modify</a>
+            <a ng-click="previewcar(car.Id)" class="card-link text-primary hover">Preview</a>
+        </div>
+    </div>
+</div>

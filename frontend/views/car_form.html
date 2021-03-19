@@ -1,0 +1,29 @@
+<form ng-init="init()">
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" placeholder="Enter title" ng-model="car.Title">
+    </div>
+    <div class="form-group">
+        <label>Brand</label>
+        <input type="text" class="form-control" placeholder="Enter brand" ng-model="car.Brand">
+    </div>
+	<div class="form-group">
+        <label>Model</label>
+        <input type="text" class="form-control" placeholder="Enter model" ng-model="car.Model">
+    </div>
+	<div class="form-group">
+        <label>DrivedDistance</label>
+        <input type="number" class="form-control" placeholder="Enter drived distance" ng-model="car.DrivedDistance">
+    </div>
+	<div class="form-group">
+        <label>Price</label>
+        <input type="number" class="form-control" placeholder="Enter price" ng-model="car.Price">
+    </div>
+    <div class="form-group">
+        <label>Fuel</label>
+        <input type="text" class="form-control" placeholder="Enter price" ng-model="car.Fuel">
+    </div>
+    <button ng-click="submit()" type="submit" class="btn btn-primary">Submit</button>
+    <a style="margin-left: 20px" ng-click="goBack(car)" class="card-link text-primary hover">Go back</a>
+    <a ng-if="isEdit" ng-click="deletecar(car.Id)" class="card-link text-danger hover">Deleteiiii</a>
+</form>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <title>Car app</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
+</head>
+
+<body ng-app="appTitleGoesHere" ng-controller="MainCtrl">
+    <div ng-init="init()">
+        <div style="width:40%;">
+            <input class="form-control" ng-model="filterText" ng-change='filter()'
+            placeholder="Search for specific car" style="margin-bottom: 5px" />
+        
+            <input class="form-control" ng-model="filterBrand" ng-change='filter()'
+        placeholder="Search for specific car" style="margin-bottom: 5px" />
+        </div>
+        
+    
+        
+        
+        <form action="/action_page.php">
+            <div class="form-group">
+              <select class="form-control" id="sel1" name="sellist1">
+                <option>Car model</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+        </form>
+
+        <button ng-click="createcar()" type="button" class="btn btn-secondary" style="margin-bottom: 15px">Add new
+            car</button>
+        <div ng-repeat="car in cars track by $index" class="card bg-dark text-white"
+            style="width: 100%; margin-bottom: 10px">
+            <div class="card-body">
+                <h5 class="card-title">{{ car.Title }}</h5>
+                <p class="card-text">Brand: {{ car.Brand }}</p>
+                <p class="card-text">Model: {{ car.Model }}</p>
+                <p class="card-text">Drived distance: {{ car.DrivedDistance }}km</p>
+                <p class="card-text">Price{{ car.Price }}€</p>
+                <a ng-click="deletecar(car.Id)" class="card-link text-danger hover">Delete</a>
+                <a ng-click="modifycar(car.Id)" class="card-link text-info hover">Modify</a>
+                <a ng-click="previewcar(car.Id)" class="card-link text-primary hover">Preview</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="services.js"></script>
+<link rel="stylesheet" href="css/index.css" />
+
+</html>

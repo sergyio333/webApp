@@ -1,0 +1,15 @@
+<div ng-init="init()" class="card card bg-dark text-white">
+    <img class="card-img-top"
+        src="https://vistapointe.net/images/ribblehead-viaduct-wallpaper-7.jpg">
+    <div class="card-body preview-card">
+        <h5 class="card-title">{{ car.Title }}</h5>
+        <p class="card-text">Brand: {{ car.Brand }}</p>
+		<p class="card-text">Model: {{ car.Model }}</p>
+		<p class="card-text">DrivedDistance: {{ car.DrivedDistance }} Km</p>
+		<p class="card-text">Price: {{ car.Price }} Eur</p>
+        <p class="card-text">Fuel: {{ car.Fuel }}</p>
+        <a ng-click="deletecar(car.Id)" class="card-link text-danger hover">Delete</a>
+        <a ng-click="modifycar(car.Id)" class="card-link text-info hover">Modify</a>
+        <a ng-click="goBack(car)" class="card-link text-primary hover">Go back</a>
+    </div>
+</div>
