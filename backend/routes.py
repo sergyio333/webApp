@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify, request
-from sqlalchemy import select, delete
-from .models import cars
+from flask import Blueprint, jsonify, request, session
+from sqlalchemy import select, delete, join
+from .models import cars, brands, models
 from .methods import sqlExe, sqlAction, validateFields
 from datetime import datetime
 
@@ -9,8 +9,9 @@ carRoutes = Blueprint("cars", __name__, url_prefix='/api/car')
 
 @carRoutes.route('/get', methods=["POST"])
 def get_cars():
-    query = select([cars.c.Id, cars.c.Title, cars.c.Brand, cars.c.Model, cars.c.DrivedDistance,
+    query = select([cars.c.Id, cars.c.Title, cars.c.Brand_id, cars.c.Model_id, cars.c.DrivedDistance,
                     cars.c.Price, cars.c.Fuel, cars.c.DateCreated])
+
     get_multiple = True
 
     if request.get_json().get("id", False):
@@ -21,6 +22,11 @@ def get_cars():
     elif request.get_json().get("titleFilter", False):
         search_text =  "".join(("%", request.get_json()["titleFilter"], "%"))
         query = query.where(cars.c.Title.like(search_text))
+        #x = query.where(cars.c.Title.like(search_text))
+        #y = query.where(cars.c.Fuel.like(search_text))
+        #query = query.join(x, y)
+
+
 
     result = sqlExe(query, multiple=get_multiple)
 
@@ -30,13 +36,13 @@ def get_cars():
 def create_car():
     data = request.get_json()
 
-    if not validateFields(data, ["Title", "Brand", "Model", "DrivedDistance", "Price", "Fuel"]):
+    if not validateFields(data, ["Title", "Brand_id", "Model_id", "DrivedDistance", "Price", "Fuel"]):
         return jsonify(success=False, message="Invalid form data")
 
     data = {
         "Title": data["Title"],
-        "Brand": data["Brand"],
-        "Model": data["Model"],
+        "Brand_id": data["Brand_id"],
+        "Model_id": data["Model_id"],
         "DrivedDistance": data["DrivedDistance"],
         "Price": data["Price"],
         "Fuel": data["Fuel"],
@@ -52,13 +58,13 @@ def create_car():
 def modify_car(id):
     data = request.get_json()
 
-    if not validateFields(data, ["Id", "Title", "Brand", "Model", "DrivedDistance", "Price", "Fuel"]):
+    if not validateFields(data, ["Id", "Title", "Brand_id", "Model_id", "DrivedDistance", "Price", "Fuel"]):
         return jsonify(success=False, message="Invalid form data")
 
     data = {
         "Title": data["Title"],
-        "Brand": data["Brand"],
-        "Model": data["Model"],
+        "Brand_id": data["Brand_id"],
+        "Model_id": data["Model_id"],
         "DrivedDistance": data["DrivedDistance"],
         "Price": data["Price"],
         "Fuel": data["Fuel"]

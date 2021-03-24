@@ -14,12 +14,8 @@ app.service('$cars', function($http) {
             return response.data;
         });
     };
-	
-	this.get = function(brandFilter) {
-        return $http(this.default_options('get', {brandFilter: brandFilter})).then(function(response) {
-            return response.data;
-        });
-    };
+
+
 
     this.create = function(data) {
         return $http(this.default_options('create', data)).then(function(response) {

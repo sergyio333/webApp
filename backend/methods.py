@@ -3,7 +3,7 @@ def sqlExe(query, conn=None, multiple=True):
 
     @param: query (SQLAlchemy query object - [delete, insert, update])
     @param: conn[optional] (Connection object to the database)
-    @param: multiple[optional] (If we wan't a single record we call the method with multiple=False)
+    @param: multiple[optional] (If we want a single record we call the method with multiple=False)
 
     @result: either a List<Dict> or a single <Dict>
     """

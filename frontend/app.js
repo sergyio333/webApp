@@ -4,6 +4,7 @@
 var app = angular.module('appTitleGoesHere', [], function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', { templateUrl: "./views/default.html", controller: "DefController" })
+        .when('/table', { templateUrl: "./views/empty.html", controller: "EmptyController" })
         .when('/preview/:id', { templateUrl: "./views/car_preview.html", controller: "PreviewController" })
         .when('/edit/:id', { templateUrl: "./views/car_form.html", controller: "carModifyController" })
         .when('/create', { templateUrl: "./views/car_form.html", controller: "carCreateController" })
@@ -19,17 +20,26 @@ function MainCtrl($scope, $route, $routeParams, $navigate, $location) {
     $scope.$location = $location;
     $scope.$routeParams = $routeParams;
     $scope.home = function() {
-        $navigate.goTo("/#/");
+        $navigate.goTO("/#/")
+    }
+    $scope.table = function(){
+        $navigate.goTo("/#/table");
     }
 }
+
 
 // home page controller (shows all the cars in the database)
 app.controller('DefController', function ($scope, $navigate, $cars, $timeout) {
     $scope.cars = [];
     $scope.filterText = "";
-    $scope.filterModel = "";
+    $scope.fuelFilter = "";
     $scope.init = function() {
-        $cars.get($scope.filterText && $scope.filterModel).then(function(result) {
+        $cars.get($scope.filterText ).then(function(result) {
+            $scope.cars = result;
+        });
+    }
+    $scope.sort = function() {
+        $cars.get($scope.fuelFilter ).then(function(result) {
             $scope.cars = result;
         });
     }
@@ -50,6 +60,10 @@ app.controller('DefController', function ($scope, $navigate, $cars, $timeout) {
         $navigate.goTo("/#/create");
     }
 
+    $scope.looktable = function() {
+        $navigate.goTo("/#/table");
+    }
+
     $scope.modifycar = function(id) {
         $navigate.goTo(["/#/edit/", id].join(""));
     }
@@ -67,6 +81,9 @@ app.controller('DefController', function ($scope, $navigate, $cars, $timeout) {
         }
     }
 });
+
+//
+
 
 // preview for a single car
 app.controller('PreviewController', function ($scope, $navigate, $cars, $routeParams) {

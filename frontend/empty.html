@@ -1,0 +1,13 @@
+<div ng-init="init()">
+    <div ng-repeat="car in cars track by $index" class="card bg-dark text-white"
+        style="width: 100%; margin-bottom: 10px">
+        <div class="card-body preview-card">
+            <h5 class="card-title">gjghj</h5>
+            <p class="card-text">Brand: {{ car.Brand }}</p>
+            <p class="card-text">Model: {{ car.Model }}</p>
+            <p class="card-text">DrivedDistance: {{ car.DrivedDistance }} Km</p>
+            <p class="card-text">Price: {{ car.Price }} Eur</p>
+            <p class="card-text">Fuel: {{ car.Fuel }}</p>
+        </div>
+    </div>  
+</div>

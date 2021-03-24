@@ -1,21 +1,104 @@
 <div ng-init="init()">
-    <input class="form-control" ng-model="filterText" ng-change='filter()'
-        placeholder="Search for specific car" style="margin-bottom: 5px" />
 
-    <input class="form-control" ng-model="filterBrand" ng-change='filter()'
+    <input class="form-control" ng-model="filterText" ng-keyup="$event.keyCode==13 && filter()"
     placeholder="Search for specific car" style="margin-bottom: 5px" />
 
-    <form action="/action_page.php">
-        <div class="form-group">
-          <select class="form-control" id="sel1" name="sellist1">
-            <option>Car model</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
+    <div class="container">
+        <div class="row">
+            <div class="col order-1">
+                <div class="form-group">
+                    <select class="form-control" id="sel1" name="sellist1">
+                    <option>Brands</option>
+                    <option>dynamic</option>
+                    <option>2</option>
+                    <option>3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col order-2">
+                <div class="form-group">
+                    <select class="form-control" id="sel1" name="sellist1">
+                    <option>Price from</option>
+                    <option>static</option>
+                    <option>2</option>
+                    <option>3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col order-3">
+                <div class="form-group">
+                    <select class="form-control" id="sel1" name="sellist1">
+                      <option>Price to</option>
+                      <option>static</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col order-4">
+                <div class="form-group">
+                    <select class="form-control" id="sel1" name="sellist1">
+                      <option>Max drived distance (km)</option>
+                      <option>static</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                </div>
+            </div>
         </div>
-    </form>
+        <div class="row">
+            <div class="col order-1">
+                <div class="form-group">
+                    <select class="form-control" id="sel1" name="sellist1">
+                    <option>Models</option>
+                    <option>dynamic</option>
+                    <option>2</option>
+                    <option>3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col order-2">
+                <div class="form-group">
+                    <select class="form-control" id="sel1" name="sellist1">
+                    <option>Min years old</option>
+                    <option>static</option>
+                    <option>2</option>
+                    <option>3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col order-3">
+                <div class="form-group">
+                    <select class="form-control" id="sel1" name="sellist1">
+                      <option>Max years old</option>
+                      <option>static</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col order-4">
+                <div class="form-group">
+                    <select class="form-control" id="sel1" name="sellist1">
+                      <option>Fuel</option>
+                      <option>dynamic</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>    
         
+    <button ng-click="filter()" type="button" class="btn btn-secondary" 
+    style="margin-bottom: 15px; margin-right: 20px">Search</button>
+
     <button ng-click="createcar()" type="button" class="btn btn-secondary" style="margin-bottom: 15px">Add new
         car</button>
     <div ng-repeat="car in cars track by $index" class="card bg-dark text-white"
